@@ -9,5 +9,5 @@ package miniprojet_lightoff;
  * @author damie
  */
 public class CelluleLumineuse {
-    
+    private Boolean etat;
 }

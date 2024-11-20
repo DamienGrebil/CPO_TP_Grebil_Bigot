@@ -8,6 +8,8 @@ package miniprojet_lightoff;
  *
  * @author damie
  */
-public class GrilleDeCellules {
-    
+public class GrilleDeJeu {
+    CelluleLumineuse[][] matriceCellules;
+    int nbLignes;
+    int nbColonnes;
 }
