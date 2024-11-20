@@ -9,5 +9,6 @@ package miniprojet_lightoff;
  * @author damie
  */
 public class Partie {
-    
+    GrilleDeJeu grille = new GrilleDeJeu();
+    int nbCoups;
 }
