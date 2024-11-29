@@ -6,7 +6,7 @@ package miniprojet_lightoff;
 
 /**
  *
- * @author damie
+ * @author etane
  */
 public class CelluleLumineuse {
     private Boolean etat;
