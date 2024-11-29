@@ -47,7 +47,11 @@ public class CelluleLumineuse {
 
     @Override
     public String toString() {
-        return "CelluleLumineuse{" + "etat=" + etat + '}';
+        if (etat==true){
+            return "X";
+        }else{
+            return"O";     
+        }
     }
     
      
