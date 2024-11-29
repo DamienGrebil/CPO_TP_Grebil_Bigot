@@ -28,14 +28,13 @@ public class GrilleDeJeu {
     }
     // crée un matrice de taille à définir 
     
-    public void eteindreToutesLesCellules(){
+    public void eteindreToutesLesCellules(){// passe toutes les cellules en état éteint
         for (int i=0 ; i < nbLignes; i++ ){
             for (int j=0 ; j < nbColonnes; j++ ){
-                matriceCellules[i][j]= eteindreCellule();
+                matriceCellules[i][j].eteindreCellule();
             }
         }
-    }
-    // passe toutes les cellules en état éteint    
+    }   
     
     public void activerLigneColonneOuDiagonaleAleatoire(){
         Random random = new Random();
@@ -60,12 +59,12 @@ public class GrilleDeJeu {
                 int diag = random.nextInt(2);
                 if (diag ==1) {
                     for (int i=0 ; i < nbLignes; i++ ){
-                        matriceCellules[i][i]= activerCellule();
+                        matriceCellules[i][i].activerCellule();
                     }       
                 }else{
                     for (int i=0 ; i < nbLignes; i++ ){
                         for (int j=0 ; j < nbColonnes; j++ ){
-                            matriceCellules[i][nbColonnes-j]= activerCellule();
+                            matriceCellules[i][nbColonnes-j].activerCellule();
                         }
                     }
                 }
@@ -73,11 +72,16 @@ public class GrilleDeJeu {
             }   
         
         }
+    }  
+
+    public melangerMatriceAleatoirement(int nbTours){
+        int nbtours;
+        matriceCellules[][].eteindreToutesLesCellules();
+        for (int i=0; i<nbtours;i++){
+            matriceCellules[][].activerLigneColonneOuDiagonaleAleatoire();
+        }
+    
+    
     }
-    
-    public void melangerMatriceAleatoirement(int nbTours){
-        
-    }
-    
-    
 }
+    
