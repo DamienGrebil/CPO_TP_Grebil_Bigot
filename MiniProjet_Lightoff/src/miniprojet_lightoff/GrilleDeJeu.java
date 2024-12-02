@@ -19,14 +19,15 @@ public class GrilleDeJeu {
     public GrilleDeJeu(int p_nbLignes, int p_nbColonnes) {
         this.nbLignes = p_nbLignes;
         this.nbColonnes = p_nbColonnes;
-        CelluleLumineuse[][] matriceCellules = new CelluleLumineuse[nbLignes][nbColonnes];
+        this.matriceCellules = new CelluleLumineuse[nbLignes][nbColonnes];
 
         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {
-                matriceCellules[i][j] = new CelluleLumineuse();
+                this.matriceCellules[i][j] = new CelluleLumineuse();
             }
         }
     }
+    
     // crée un matrice de taille à définir 
 
     public void eteindreToutesLesCellules() {// passe toutes les cellules en état éteint
@@ -123,39 +124,31 @@ public class GrilleDeJeu {
 
     @Override
     public String toString() {
-        // Affiche les indices des colonnes avec un alignement
-        System.out.print("     "); // Espacement initial pour aligner avec les indices de ligne
-        for (int j = 0; j < nbColonnes; j++) {
-            System.out.printf("%3d ", j); // Indices des colonnes, formatés pour alignement
+        System.out.print("  |");
+        for (int h =0;h<nbColonnes;h++){
+            System.out.print(" "+h+" |");
         }
         System.out.println();
-
-        // Affiche une ligne de séparation initiale
-        System.out.print("   +");
-        for (int j = 0; j < nbColonnes; j++) {
-            System.out.print("---+");
+        for (int k=0; k<4.5*nbColonnes;k++){
+            System.out.print("-");
         }
         System.out.println();
-
-        // Affiche chaque ligne de la grille
-        for (int i = 0; i < nbLignes; i++) {
-            // Affiche l'indice de la ligne
-            System.out.printf("%3d |", i);
-            // Affiche les cellules de la ligne
-            for (int j = 0; j < nbColonnes; j++) {
-                System.out.printf(" %s |", matriceCellules[i][j].isActive() ? "X" : "O");
+        for (int i = 0; i < nbLignes; i++){
+            System.out.print( i +" | ");
+            for (int j=0; j<nbColonnes;j++){
+                System.out.print(  matriceCellules[i][j] + " | ");
             }
-            System.out.println(); // Retour à la ligne après une ligne de données
-
-            // Affiche une ligne de séparation après chaque ligne
-            System.out.print("   +");
-            for (int j = 0; j < nbColonnes; j++) {
-                System.out.print("---+");
+            System.out.println();
+            for (int k=0; k<4.5*nbColonnes;k++){
+                System.out.print("-");
             }
             System.out.println();
         }
-        return toString();
+        
+        return "GrilleDeJeu{" + "matriceCellules=" + matriceCellules + ", nbLignes=" + nbLignes + ", nbColonnes=" + nbColonnes + '}';
     }
+
+    
 
 
 
