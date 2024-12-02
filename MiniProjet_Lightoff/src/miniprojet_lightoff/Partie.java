@@ -4,6 +4,8 @@
  */
 package miniprojet_lightoff;
 
+import java.util.Scanner;
+
 /**
  *
  * @author etane
@@ -23,13 +25,35 @@ public class Partie {
     }
     
     public void lancerPartie(){
+        Scanner sc=new Scanner(System.in);
         initialiserPartie();
-        while(cellulesToutesEteintes()!=true){
-            System.out.println("veuillez saisir la ligne/colonnne/diagonale a inversser");
-            //scanner(valeur saisie)
-            //activer l/c/diag(utiliser méthode classeGDJ)
-            //maj grille
+        while(grille.cellulesToutesEteintes()!=true){
+            System.out.println("taper 1pour ligne/2 pour colonnne/3 pour diagonale a inversser");
+            int a=sc.nextInt();
+            if (a==1){
+                System.out.println("saisissez le numero de la ligne que vous voulez inverser");
+                int b=sc.nextInt();
+                grille.activerLigneDeCellules( b);
+                nbCoups+=1;
+            }else if(a==2){
+                System.out.println("saisissez le numero de la colone que vous voulez inverser"); 
+                int b=sc.nextInt();
+                grille.activerColonneDeCellules( b);
+                nbCoups+=1;
+            }else if(a==3){
+                System.out.println("appuyer sur 1 pour la diagonalle montante et 2 pour la descendante");
+                int b=sc.nextInt();
+                if(b==1){
+                    grille.activerDiagonaleMontante();
+                    nbCoups+=1;
+                }else if(b==2){
+                    grille.activerDiagonaleDescendante();
+                    nbCoups+=1;
+                }
+            }
+            System.out.println(grille);
+           
         }
-        //afficher nombre de coup
+        System.out.println("vous avez effectué"+nbCoups+" coups");
     }
 }
