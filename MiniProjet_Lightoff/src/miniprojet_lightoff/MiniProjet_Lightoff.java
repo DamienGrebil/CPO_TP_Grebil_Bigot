@@ -13,13 +13,9 @@ public class MiniProjet_Lightoff {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        CelluleLumineuse cel1=new CelluleLumineuse();
-        System.out.println(cel1.toString());
-        cel1.activerCellule();
-        System.out.println(cel1.toString());
-        cel1.eteindreCellule();
-        System.out.println(cel1.toString());    
+    public static void main(String[] args) {  
+        GrilleDeJeu grille = new GrilleDeJeu(3, 3);
+        System.out.println(grille.toString());
         
     }
     
