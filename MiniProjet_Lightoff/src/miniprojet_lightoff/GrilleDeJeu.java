@@ -57,19 +57,10 @@ public class GrilleDeJeu {
                 }
                 break;
 
-            case 2: // Active une des deux diagonale aléatoirement   
-                int diag = random.nextInt(2);
-                if (diag == 1) {
+            case 2: // Active une des deux diagonale aléatoirement
                     for (int i = 0; i < nbLignes; i++) {
                         matriceCellules[i][i].activerCellule();
                     }
-                } else {
-                    for (int i = 0; i < nbLignes; i++) {
-                        for (int j = 0; j < nbColonnes; j++) {
-                            matriceCellules[i][nbColonnes - j].activerCellule();
-                        }
-                    }
-                }
                 break;
         }
 
@@ -77,9 +68,8 @@ public class GrilleDeJeu {
 
 
     public void melangerMatriceAleatoirement(int nbTours){//sert a effectuer un certain nombre de fois une activation pour melanger la matrice
-        int nbtours=0;
         this.eteindreToutesLesCellules();
-        for (int i=0; i<nbtours;i++){
+        for (int i=0; i<nbTours;i++){
             this.activerLigneColonneOuDiagonaleAleatoire();
         }
     }
@@ -92,7 +82,7 @@ public class GrilleDeJeu {
     
     public void activerColonneDeCellules(int idColonne){//Active une Colonne choisit
         for (int i=0; i<nbLignes;i++){
-            matriceCellules[idColonne][i].activerCellule();
+            matriceCellules[i][idColonne].activerCellule();
         }
     }
     
@@ -102,11 +92,11 @@ public class GrilleDeJeu {
         }
     }
     
-    public void activerDiagonaleMontante(){//Active la diagonale montante
-        for (int i = 0; i < nbLignes; i++) {
-            for (int j = 0; j < nbColonnes; j++) {
-                matriceCellules[i][nbColonnes - j].activerCellule();
-            }
+    public void activerDiagonaleMontante() { // Active la diagonale montante
+        int colonne = nbColonnes - 1; // Initialisation à la dernière colonne
+        for (int ligne = 0; ligne < nbLignes && colonne >= 0; ligne++) {
+            matriceCellules[ligne][colonne].activerCellule();
+            colonne--; // On passe à la colonne précédente
         }
     }
     
@@ -123,13 +113,13 @@ public class GrilleDeJeu {
     }
 
     @Override
-    public String toString() {
+    public String toString() {// Crée une grille remplie 
         System.out.print("  |");
         for (int h =0;h<nbColonnes;h++){
             System.out.print(" "+h+" |");
         }
         System.out.println();
-        for (int k=0; k<4.5*nbColonnes;k++){
+        for (int k=0; k<5*nbColonnes;k++){
             System.out.print("-");
         }
         System.out.println();
@@ -139,13 +129,13 @@ public class GrilleDeJeu {
                 System.out.print(  matriceCellules[i][j] + " | ");
             }
             System.out.println();
-            for (int k=0; k<4.5*nbColonnes;k++){
+            for (int k=0; k<5*nbColonnes;k++){
                 System.out.print("-");
             }
             System.out.println();
         }
         
-        return "GrilleDeJeu{" + "matriceCellules=" + matriceCellules + ", nbLignes=" + nbLignes + ", nbColonnes=" + nbColonnes + '}';
+        return "On se rapproche!!!";
     }
 
     

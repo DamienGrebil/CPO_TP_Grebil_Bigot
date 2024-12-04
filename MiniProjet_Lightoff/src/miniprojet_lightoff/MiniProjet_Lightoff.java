@@ -14,8 +14,11 @@ public class MiniProjet_Lightoff {
      * @param args the command line arguments
      */
     public static void main(String[] args) {  
-        GrilleDeJeu grille = new GrilleDeJeu(3, 3);
-        System.out.println(grille.toString());
+        //GrilleDeJeu grille = new GrilleDeJeu(3, 3);
+        //System.out.println(grille.toString());
+        Partie parti= new Partie() ;
+        parti.initialiserPartie();
+        parti.lancerPartie();
         
     }
     

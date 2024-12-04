@@ -36,12 +36,12 @@ public class Partie {
                 grille.activerLigneDeCellules( b);
                 nbCoups+=1;
             }else if(a==2){
-                System.out.println("saisissez le numero de la colone que vous voulez inverser"); 
+                System.out.println("saisissez le numero de la colonne que vous voulez inverser"); 
                 int b=sc.nextInt();
                 grille.activerColonneDeCellules( b);
                 nbCoups+=1;
             }else if(a==3){
-                System.out.println("appuyer sur 1 pour la diagonalle montante et 2 pour la descendante");
+                System.out.println("appuyer sur 1 pour la diagonale montante et 2 pour la descendante");
                 int b=sc.nextInt();
                 if(b==1){
                     grille.activerDiagonaleMontante();
