@@ -9,7 +9,7 @@ package miniprojet_lightoff;
  * @author etane
  */
 public class CelluleLumineuse {
-    private Boolean etat;
+    Boolean etat;
     
     public CelluleLumineuse(){//initialise l'etat de la cellule à éteint
         this.etat=false;

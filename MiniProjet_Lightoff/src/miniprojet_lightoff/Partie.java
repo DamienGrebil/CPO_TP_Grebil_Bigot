@@ -11,7 +11,7 @@ import java.util.Scanner;
  * @author etane
  */
 public class Partie {
-    private GrilleDeJeu grille;
+    GrilleDeJeu grille;
     int nbCoups;
 
     public Partie(){
