@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import miniprojet_lightoff.CelluleLumineuse;
 import miniprojet_lightoff.GrilleDeJeu;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -20,15 +23,15 @@ import miniprojet_lightoff.GrilleDeJeu;
 public class FenetrePrincipale extends javax.swing.JFrame {
     GrilleDeJeu grille;
     int nbCoups;
-    GrilleDeJeu m = new GrilleDeJeu(10,10);
+    GrilleDeJeu m = new GrilleDeJeu(5,5);
     
     /**
      * Creates new form FenetrePrincipale
      */
     public FenetrePrincipale() {
         initComponents();
-        int nbLignes = 10;
-        int nbColonnes = 10;
+        int nbLignes = 5;
+        int nbColonnes = 5;
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         for (int i=0; i < nbLignes; i++) {
@@ -39,38 +42,31 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         }
         PanneaudesLignes.setLayout(new GridLayout(nbLignes, 1));
         for (int i=0; i < nbLignes; i++) {
-            CelluleGraphique bouton_cellule = new CelluleGraphique( grille.matriceCellules[i][1], 36,36);
-            PanneauGrille.add(bouton_cellule); // ajout au Jpanel PanneauGrille
-            CelluleGraphique p =new CelluleGraphique(i,matriceCellules[i][1]);
+            JButton p = new JButton();
+            final int f = i;
             p.addActionListener(new java.awt.event.ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
-                    grille.activerLigneDeCellules(0);
-                    repaint();
-
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    grille.activerLigneDeCellules(f);
+                    PanneauGrille.repaint();
                 }
             });
+            PanneaudesLignes.add(p);
         }
         PanneaudesColonnes.setLayout(new GridLayout(1, nbColonnes));
         for (int i=0; i < nbColonnes; i++) {
-            CelluleGraphique bouton_cellule = new CelluleGraphique( grille.matriceCellules[1][i], 36,36);
-            PanneauGrille.add(bouton_cellule); // ajout au Jpanel PanneauGrille
-            CelluleGraphique p =new CelluleGraphique(i,matriceCellules[1][i]);
+            JButton p = new JButton();
+            final int f = i;
             p.addActionListener(new java.awt.event.ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
-                    grille.activerColonneDeCellules(0);
-                    repaint();
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    grille.activerColonneDeCellules(f);
+                    PanneauGrille.repaint();
 
                 }
             });
+        PanneaudesColonnes.add(p);
         }
-        PanneaudesColonnes.setLayout(new GridLayout(1, nbColonnes));
-        for (int i=0; i <nbColonnes ; i++) {
-            CelluleGraphique bouton_cellule = new CelluleGraphique( grille.matriceCellules[1][i], 36,36);
-            PanneauGrille.add(bouton_cellule); // ajout au Jpanel PanneauGrille
-        }
-
     }
 
     /**
@@ -89,6 +85,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         PanneaudesColonnes = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(242, 242, 20));
         setPreferredSize(new java.awt.Dimension(400, 400));
 
         PanneauGrille.setBackground(new java.awt.Color(0, 0, 242));
@@ -149,9 +146,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Diag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PanneaudesColonnes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Diag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PanneaudesColonnes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -223,10 +220,98 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FenetrePrincipale().setVisible(true);
+                new FenetrePrincipale().setVisible(true);   
             }
         });
     }
+    
+public class LightOffGame {
+    private JFrame frame;
+    private JButton[][] buttons;
+    private int gridSize = 10; // Exemple de taille de grille
+    private int movesCount = 0;
+    private JLabel messageLabel;
+
+    public LightOffGame() {
+        initializeGame();
+    }
+
+    private void initializeGame() {
+        frame = new JFrame("LightOff Game");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
+
+        JPanel gridPanel = new JPanel(new GridLayout(gridSize, gridSize));
+        buttons = new JButton[gridSize][gridSize];
+
+        for (int i = 0; i < gridSize; i++) {
+            for (int j = 0; j < gridSize; j++) {
+                JButton button = new JButton("On"); // Initial state
+                button.setBackground(Color.YELLOW); // "On" state color
+                int row = i, col = j; // Capture indices for lambda
+                button.addActionListener(e -> handleButtonClick(row, col));
+                buttons[i][j] = button;
+                gridPanel.add(button);
+            }
+        }
+
+        messageLabel = new JLabel("Moves: 0");
+        frame.add(messageLabel, BorderLayout.SOUTH);
+        frame.add(gridPanel, BorderLayout.CENTER);
+
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    private void handleButtonClick(int nbLignes, int nbColonnes) {
+        toggleLights(nbLignes,nbColonnes ); // Toggle the lights
+        movesCount++; // Increment the number of moves
+        messageLabel.setText("Moves: " + movesCount);
+
+        if (isGridOff()) {
+            endGame("Congratulations! You've turned off all the lights!");
+        }
+    }
+
+    private void toggleLights(int row, int col) {
+        toggleButton(row, col); // Toggle the clicked button
+        if (row > 0) toggleButton(row - 1, col); // Above
+        if (row < gridSize - 1) toggleButton(row + 1, col); // Below
+        if (col > 0) toggleButton(row, col - 1); // Left
+        if (col < gridSize - 1) toggleButton(row, col + 1); // Right
+    }
+
+    private void toggleButton(int row, int col) {
+        JButton button = buttons[row][col];
+        if (button.getText().equals("On")) {
+            button.setText("Off");
+            button.setBackground(Color.GRAY); // "Off" state color
+        } else {
+            button.setText("On");
+            button.setBackground(Color.YELLOW); // "On" state color
+        }
+    }
+
+    private boolean isGridOff() {
+        for (int i = 0; i < gridSize; i++) {
+            for (int j = 0; j < gridSize; j++) {
+                if (buttons[i][j].getText().equals("On")) {
+                    return false; // At least one light is still on
+                }
+            }
+        }
+        return true; // All lights are off
+    }
+
+    private void endGame(String message) {
+        messageLabel.setText(message);
+        for (int i = 0; i < gridSize; i++) {
+            for (int j = 0; j < gridSize; j++) {
+                buttons[i][j].setEnabled(false); // Disable all buttons
+            }
+        }
+    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Diag;
