@@ -52,6 +52,20 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             });
         }
         PanneaudesColonnes.setLayout(new GridLayout(1, nbColonnes));
+        for (int i=0; i < nbColonnes; i++) {
+            CelluleGraphique bouton_cellule = new CelluleGraphique( grille.matriceCellules[1][i], 36,36);
+            PanneauGrille.add(bouton_cellule); // ajout au Jpanel PanneauGrille
+            CelluleGraphique p =new CelluleGraphique(i,matriceCellules[1][i]);
+            p.addActionListener(new java.awt.event.ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    grille.activerColonneDeCellules(0);
+                    repaint();
+
+                }
+            });
+        }
+        PanneaudesColonnes.setLayout(new GridLayout(1, nbColonnes));
         for (int i=0; i <nbColonnes ; i++) {
             CelluleGraphique bouton_cellule = new CelluleGraphique( grille.matriceCellules[1][i], 36,36);
             PanneauGrille.add(bouton_cellule); // ajout au Jpanel PanneauGrille
