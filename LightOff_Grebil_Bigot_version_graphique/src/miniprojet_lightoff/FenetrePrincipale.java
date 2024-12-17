@@ -54,6 +54,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     grille.activerLigneDeCellules(f);
                     PanneauGrille.repaint();
+                    if (grille.cellulesToutesEteintes()){
+                        System.out.print("C'est une victoire !!!");
+                    }
+                    
                 }
             });
             PanneaudesLignes.add(p);
@@ -67,7 +71,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     grille.activerColonneDeCellules(f);
                     PanneauGrille.repaint();
-                   
+                    if (grille.cellulesToutesEteintes()){
+                        System.out.print("C'est une victoire !!!");
+                    }
                 }
             });
         PanneaudesColonnes.add(p);
