@@ -40,6 +40,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 CelluleGraphique bouton_cellule = new CelluleGraphique( grille.matriceCellules[i][j], 36,36);
                 PanneauGrille.add(bouton_cellule); // ajout au Jpanel PanneauGrille
             }
+            /*
+            getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, nbColonnes * 40, nbLignes * 40));
+            this.pack(); // Ajuste la taille de la fenêtre
+            this.revalidate();*/
         }
         PanneaudesLignes.setLayout(new GridLayout(nbLignes, 1));
         for (int i=0; i < nbLignes; i++) {
@@ -195,6 +199,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g); 
             this.setText(celluleLumineuseAssociee.toString());
+            int w = this.getWidth(); 
+            int h = this.getHeight(); 
+            if (celluleLumineuseAssociee.estEteint() == true) { 
+                g.setColor(Color.red); 
+            } else { 
+                g.setColor(Color.yellow); 
+            } 
+            g.fillOval(2, 2, w - 8, h - 4);
         }
     }
 
