@@ -29,13 +29,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     /**
      * Creates new form FenetrePrincipale
      */
-    public FenetrePrincipale() {
+    public FenetrePrincipale() {// crée la grille et l'adapte en fonction des coups joués
         initComponents();
         int nbLignes = 2;
         int nbColonnes = 2;
         messageVictoire = new JLabel();
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
-        PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
+        PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));//Crée la grille de bouton
         this.initialiserPartie();
         for (int i=0; i < nbLignes; i++) {
             for (int j=0; j < nbColonnes; j++ ) {
@@ -47,7 +47,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             this.pack(); // Ajuste la taille de la fenêtre
             this.revalidate();*/
         }
-        PanneaudesLignes.setLayout(new GridLayout(nbLignes, 1));
+        PanneaudesLignes.setLayout(new GridLayout(nbLignes, 1));//Crée la colonne de bouton pour changer les lignes de couleur
         for (int i=0; i < nbLignes; i++) {
             JButton p = new JButton();
             final int f = i;
@@ -65,7 +65,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             });
             PanneaudesLignes.add(p);
         }
-        PanneaudesColonnes.setLayout(new GridLayout(1, nbColonnes));
+        PanneaudesColonnes.setLayout(new GridLayout(1, nbColonnes));//Crée la ligne de bouton pour changer les colonnes de couleur
         for (int i=0; i < nbColonnes; i++) {
             JButton p = new JButton();
             final int f = i;
@@ -81,11 +81,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             });
         PanneaudesColonnes.add(p);
         }
-    add(messageVictoire);
-    setTitle("Jeu LightOff");
-    setSize(400, 400);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setVisible(true);    
     }
     
 
@@ -190,7 +185,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+// Bouton pour changer la diagonale de couleur
     private void btndiagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndiagActionPerformed
         JButton p = new JButton();
         p.addActionListener(new java.awt.event.ActionListener() {
@@ -204,7 +199,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }//GEN-LAST:event_btndiagActionPerformed
 
     
-    public void initialiserPartie() {
+    public void initialiserPartie() {// crée aléatoirement une grille avec des pions positionnés aléatoirement
         grille.eteindreToutesLesCellules();
         grille.melangerMatriceAleatoirement(10);
     }
@@ -223,7 +218,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         }
         // Methode gérant le dessin de la cellule 
         @Override
-        protected void paintComponent(Graphics g) {
+        protected void paintComponent(Graphics g) {//donne de la couleur au boutons
             super.paintComponent(g); 
             this.setText(celluleLumineuseAssociee.toString());
             int w = this.getWidth(); 
@@ -239,9 +234,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     
     
 
-    private void afficherMessageVictoire() {
+    private void afficherMessageVictoire() { // ouvre une fenetre de fin de partie
         System.out.print("C'est une victoire !!!");
         PanneaudesLignes.setEnabled(false);
+        PanneaudesColonnes.setEnabled(false);
         FenetreVictoire f = new FenetreVictoire() ;
         f.setVisible(true) ;
     }
