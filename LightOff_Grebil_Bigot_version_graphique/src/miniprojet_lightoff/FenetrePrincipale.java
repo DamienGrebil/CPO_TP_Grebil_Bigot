@@ -24,14 +24,16 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     GrilleDeJeu grille;
     int nbCoups;
     GrilleDeJeu m = new GrilleDeJeu(5,5);
+    private JLabel messageVictoire;
     
     /**
      * Creates new form FenetrePrincipale
      */
     public FenetrePrincipale() {
         initComponents();
-        int nbLignes = 3;
-        int nbColonnes = 3;
+        int nbLignes = 2;
+        int nbColonnes = 2;
+        messageVictoire = new JLabel();
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.initialiserPartie();
@@ -55,7 +57,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     grille.activerLigneDeCellules(f);
                     PanneauGrille.repaint();
                     if (grille.cellulesToutesEteintes()){
-                        System.out.print("C'est une victoire !!!");
+                        afficherMessageVictoire();
+                        
                     }
                     
                 }
@@ -72,14 +75,19 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     grille.activerColonneDeCellules(f);
                     PanneauGrille.repaint();
                     if (grille.cellulesToutesEteintes()){
-                        System.out.print("C'est une victoire !!!");
+                        afficherMessageVictoire();
                     }
                 }
             });
         PanneaudesColonnes.add(p);
         }
-        
+    add(messageVictoire);
+    setTitle("Jeu LightOff");
+    setSize(400, 400);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setVisible(true);    
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -95,6 +103,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         Diag = new javax.swing.JPanel();
         btndiag = new javax.swing.JButton();
         PanneaudesColonnes = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(242, 242, 20));
@@ -109,11 +118,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         PanneaudesLignes.setLayout(PanneaudesLignesLayout);
         PanneaudesLignesLayout.setHorizontalGroup(
             PanneaudesLignesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         PanneaudesLignesLayout.setVerticalGroup(
             PanneaudesLignesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 397, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         Diag.setBackground(new java.awt.Color(242, 2, 242));
@@ -129,43 +138,54 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         Diag.setLayout(DiagLayout);
         DiagLayout.setHorizontalGroup(
             DiagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btndiag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btndiag, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
         );
         DiagLayout.setVerticalGroup(
             DiagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btndiag, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+            .addGroup(DiagLayout.createSequentialGroup()
+                .addComponent(btndiag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         PanneaudesColonnes.setBackground(new java.awt.Color(242, 242, 100));
-        PanneaudesColonnes.setLayout(new java.awt.GridLayout());
+        PanneaudesColonnes.setLayout(new java.awt.GridLayout(1, 0));
+
+        jLabel1.setFont(new java.awt.Font("Tw Cen MT", 0, 48)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("LIGHT OFF");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Diag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PanneaudesLignes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
-                    .addComponent(PanneaudesColonnes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(185, 185, 185)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Diag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PanneaudesLignes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+                            .addComponent(PanneaudesColonnes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(555, 555, 555))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Diag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PanneaudesColonnes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PanneaudesColonnes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Diag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PanneaudesLignes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(PanneaudesLignes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)))
         );
 
         pack();
@@ -176,8 +196,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         p.addActionListener(new java.awt.event.ActionListener() {
         @Override
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-        grille.activerDiagonaleDescendante();
-        PanneauGrille.repaint();
+            grille.activerDiagonaleDescendante();
+            PanneauGrille.repaint();
+            
             }
         });
     }//GEN-LAST:event_btndiagActionPerformed
@@ -215,6 +236,17 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             g.fillOval(2, 2, w - 8, h - 4);
         }
     }
+    
+    
+
+    private void afficherMessageVictoire() {
+        System.out.print("C'est une victoire !!!");
+        PanneaudesLignes.setEnabled(false);
+        FenetreVictoire f = new FenetreVictoire() ;
+        f.setVisible(true) ;
+    }
+    
+    
 
     
     /**
@@ -258,5 +290,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JPanel PanneaudesColonnes;
     private javax.swing.JPanel PanneaudesLignes;
     private javax.swing.JButton btndiag;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
