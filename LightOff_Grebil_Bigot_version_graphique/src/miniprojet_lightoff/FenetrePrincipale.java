@@ -32,7 +32,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     public FenetrePrincipale() {// crée la grille et l'adapte en fonction des coups joués
         initComponents();
         int nbLignes = 2;
-        int nbColonnes = 2;
+        int nbColonnes =2;
         messageVictoire = new JLabel();
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));//Crée la grille de bouton
