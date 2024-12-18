@@ -31,8 +31,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
      */
     public FenetrePrincipale() {// crée la grille et l'adapte en fonction des coups joués
         initComponents();
-        int nbLignes = 15;
-        int nbColonnes = 15;
+        int nbLignes = 5;
+        int nbColonnes = 5;
         messageVictoire = new JLabel();
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));//Crée la grille de bouton
@@ -56,6 +56,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     grille.activerLigneDeCellules(f);
                     PanneauGrille.repaint();
+                    nbcoups ++;
+                    jLabel2.setText("Vous avez joué " + nbcoups +" coups");
                     if (grille.cellulesToutesEteintes()){
                         afficherMessageVictoire();
                         
@@ -74,6 +76,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     grille.activerColonneDeCellules(f);
                     PanneauGrille.repaint();
+                    nbcoups ++;
+                    jLabel2.setText("Vous avez joué " + nbcoups +" coups");
                     if (grille.cellulesToutesEteintes()){
                         afficherMessageVictoire();
                     }
@@ -140,7 +144,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         );
         DiagLayout.setVerticalGroup(
             DiagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btndiag1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btndiag1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         PanneaudesColonnes.setBackground(new java.awt.Color(242, 242, 100));
@@ -171,14 +175,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             .addComponent(btndiag2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
 
-        jLabel2.setText("Nombre de coups: ");
+        jLabel2.setText("Nombre de coups : ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(185, 185, 185)
+                .addGap(252, 252, 252)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -189,33 +193,35 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37)
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabel2))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(PanneaudesColonnes, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(PanneaudesColonnes, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                        .addComponent(Diag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(PanneaudesLignes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(PanneaudesColonnes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Diag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+                            .addComponent(PanneaudesLignes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(41, 41, 41))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel2)
-                        .addGap(51, 51, 51))))
+                        .addGap(53, 53, 53))))
         );
 
         pack();
@@ -224,14 +230,18 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void btndiag1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndiag1ActionPerformed
         this.grille.activerDiagonaleDescendante();
         repaint();
+        nbcoups ++;
+        jLabel2.setText("Vous avez joué " + nbcoups +" coups");
         if (grille.cellulesToutesEteintes()){
             afficherMessageVictoire();
         }
     }//GEN-LAST:event_btndiag1ActionPerformed
-
+// Bouton pour changer la diagonale opposé de couleur
     private void btndiag2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndiag2ActionPerformed
        this.grille.activerDiagonaleMontante();
         repaint();
+        nbcoups ++;
+        jLabel2.setText("Vous avez joué " + nbcoups +" coups");
         if (grille.cellulesToutesEteintes()){
             afficherMessageVictoire();
         }
@@ -274,9 +284,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     
 
     private void afficherMessageVictoire() { // ouvre une fenetre de fin de partie
-        System.out.print("C'est une victoire !!!");
-        PanneaudesLignes.setEnabled(false);
-        PanneaudesColonnes.setEnabled(false);
         FenetreVictoire f = new FenetreVictoire() ;
         f.setVisible(true) ;
         dispose();// enlève l'ancienne page 
