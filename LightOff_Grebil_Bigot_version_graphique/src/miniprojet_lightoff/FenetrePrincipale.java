@@ -31,8 +31,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
      */
     public FenetrePrincipale() {// crée la grille et l'adapte en fonction des coups joués
         initComponents();
-        int nbLignes = 2;
-        int nbColonnes =2;
+        int nbLignes = 15;
+        int nbColonnes = 15;
         messageVictoire = new JLabel();
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));//Crée la grille de bouton
@@ -186,21 +186,17 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 // Bouton pour changer la diagonale de couleur
     private void btndiagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndiagActionPerformed
-        JButton p = new JButton();
-        p.addActionListener(new java.awt.event.ActionListener() {
-        @Override
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            grille.activerDiagonaleDescendante();
-            PanneauGrille.repaint();
-            
-            }
-        });
+        this.grille.activerDiagonaleDescendante();
+        repaint();
+        if (grille.cellulesToutesEteintes()){
+            afficherMessageVictoire();
+        }
     }//GEN-LAST:event_btndiagActionPerformed
 
     
     public void initialiserPartie() {// crée aléatoirement une grille avec des pions positionnés aléatoirement
         grille.eteindreToutesLesCellules();
-        grille.melangerMatriceAleatoirement(10);
+        grille.melangerMatriceAleatoirement(100);
     }
     
     public class CelluleGraphique extends JButton {
