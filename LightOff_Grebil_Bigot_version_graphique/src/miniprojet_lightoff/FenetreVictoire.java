@@ -81,11 +81,13 @@ public class FenetreVictoire extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rejoueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejoueActionPerformed
-        new FenetrePrincipale().setVisible(true); 
+        new FenetrePrincipale().setVisible(true);
+        dispose();
     }//GEN-LAST:event_rejoueActionPerformed
 
     private void backmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backmenuActionPerformed
         new FenetreAccueil().setVisible(true); 
+        dispose();
     }//GEN-LAST:event_backmenuActionPerformed
 
     /**

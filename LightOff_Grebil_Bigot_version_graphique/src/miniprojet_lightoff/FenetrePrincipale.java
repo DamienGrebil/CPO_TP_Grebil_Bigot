@@ -31,8 +31,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
      */
     public FenetrePrincipale() {// crée la grille et l'adapte en fonction des coups joués
         initComponents();
-        int nbLignes = 5;
-        int nbColonnes = 5;
+        int nbLignes = 5; // Changeable pour n'importe quelle valeur.
+        int nbColonnes = 5;// Comme pour nblignes
         messageVictoire = new JLabel();
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));//Crée la grille de bouton
@@ -57,8 +57,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     grille.activerLigneDeCellules(f);
                     PanneauGrille.repaint();
                     nbcoups ++;
-                    jLabel2.setText("Vous avez joué " + nbcoups +" coups");
-                    if (grille.cellulesToutesEteintes()){
+                    jLabel2.setText("Vous avez joué " + nbcoups +" coups"); // met a jour le nombre de coup effectués
+                    if (grille.cellulesToutesEteintes()){// pour verifier si il y a une victoire a chaque coup
                         afficherMessageVictoire();
                         
                     }
@@ -77,8 +77,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     grille.activerColonneDeCellules(f);
                     PanneauGrille.repaint();
                     nbcoups ++;
-                    jLabel2.setText("Vous avez joué " + nbcoups +" coups");
-                    if (grille.cellulesToutesEteintes()){
+                    jLabel2.setText("Vous avez joué " + nbcoups +" coups");// met a jour le nombre de coup effectués
+                    if (grille.cellulesToutesEteintes()){// pour verifier si il y a une victoire a chaque coup
                         afficherMessageVictoire();
                     }
                 }
@@ -231,8 +231,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         this.grille.activerDiagonaleDescendante();
         repaint();
         nbcoups ++;
-        jLabel2.setText("Vous avez joué " + nbcoups +" coups");
-        if (grille.cellulesToutesEteintes()){
+        jLabel2.setText("Vous avez joué " + nbcoups +" coups");// met a jour le nombre de coup effectués
+        if (grille.cellulesToutesEteintes()){// pour verifier si il y a une victoire a chaque coup
             afficherMessageVictoire();
         }
     }//GEN-LAST:event_btndiag1ActionPerformed
@@ -241,8 +241,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
        this.grille.activerDiagonaleMontante();
         repaint();
         nbcoups ++;
-        jLabel2.setText("Vous avez joué " + nbcoups +" coups");
-        if (grille.cellulesToutesEteintes()){
+        jLabel2.setText("Vous avez joué " + nbcoups +" coups");// met a jour le nombre de coup effectués
+        if (grille.cellulesToutesEteintes()){// pour verifier si il y a une victoire a chaque coup
             afficherMessageVictoire();
         }
     }//GEN-LAST:event_btndiag2ActionPerformed
@@ -250,10 +250,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     
     public void initialiserPartie() {// crée aléatoirement une grille avec des pions positionnés aléatoirement
         grille.eteindreToutesLesCellules();
-        grille.melangerMatriceAleatoirement(100);
+        grille.melangerMatriceAleatoirement(100);// Pour que ca soit bien mélangé :)
     }
     
-    public class CelluleGraphique extends JButton {
+    public class CelluleGraphique extends JButton { 
         int largeur; // largeur en pixel de la cellule
         int hauteur; // hauteur en pixel de la cellule
         
